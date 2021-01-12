@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<section class="about">
+			<h1 class="mt-3 mb-4">About us!</h1>
+
+			{% include "./partials/about.html.twig" %}
+
+		</section>
+		<section class="projets">
+			<h1 class="mt-3 mb-4">Nos Projets!</h1>
+			<div class="row">
+				{% for projet in projets %}
+					<div class="col-md-4">
+						<div class="card bg-light mb-3">
+							<div class="card-header text-center">
+								<strong>{{ projet.title }}</strong><br>
+							</div>
+							{% if projet.imageName %}
+								<a href="">
+									<img src="img/post/{{projet.imageName}}" alt="{{projet.imageName}}" style="height: 200px; width:100%; display:block;">
+								</a>
+							{% else %}
+								<a href="">
+									<img src="http://placehold.it/1000x400" alt="http://placehold.it/1000x400" style="height: 200px; width:100%; display:block;">
+								</a>
+							{% endif %}
+							<div class="card-body">
+								<h4 class="card-title"></h4>
+								<p class="card-text " style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+									{{projet.content}}
+								</p>
+								<a href="#" class="btn btn-secondary">en savoir plus</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+		<section class="developpements">
+			<h1 class="mt-3 mb-4">Nos Développements!</h1>
+			<div class="row">
+				{% for developpement in developpements %}
+					<div class="col-md-4">
+						<div class="card bg-light mb-3">
+							<div class="card-header text-center">
+								<strong>{{ developpement.title }}</strong><br>
+							</div>
+							{% if developpement.imageName %}
+								<a href="">
+									<img src="img/post/{{developpement.imageName}}" alt="{{developpement.imageName}}" style="height: 200px; width:100%; display:block;">
+								</a>
+							{% else %}
+								<a href="">
+									<img src="http://placehold.it/1000x400" alt="http://placehold.it/1000x400" style="height: 200px; width:100%; display:block;">
+								</a>
+							{% endif %}
+							<div class="card-body">
+								<h4 class="card-title"></h4>
+								<p class="card-text " style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+									{{developpement.content}}
+								</p>
+								<a href="#" class="btn btn-secondary">en savoir plus</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		</section>
+
+		<section class="partenaires">
+			<h1 class="mt-3 mb-4">Nos Partenaires!</h1>
+
+			<div class="owl-carousel">
+				{% for partenaire in partenaires %}
+				<img src="img/post/{{partenaire.imageName}}" class="d-block w-100" alt="introuvable">
+				{% endfor %}
+			</div>	
+		</section>
+	</div>
+
+	
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		$(document).ready(function () {
+			$('.owl-carousel').owlCarousel({
+				autoplay: true,
+				lazyLoad: true,
+				loop: true,
+				items: 8,
+				margin: 20,
+				center: true,
+				autoplayTimeout: 3000,
+				autoplayHoverPause: true,
+				responsiveClass: true,
+				autoHeight: true,
+				smartSpeed: 3000
+			})
+		});
+	</script>
+{% endblock %}

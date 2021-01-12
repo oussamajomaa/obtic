@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show post{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		{% for post in posts %}
+			<div class="col-md-4">
+				<div class="card bg-light mb-3">
+					<div class="card-header text-center">
+						<strong>{{ post.title }}</strong><br>
+					</div>
+					{% if post.imageName %}
+						<a href="">
+							<img src="img/post/{{post.imageName}}" alt="{{post.imageName}}" style="height: 200px; width:100%; display:block;">
+						</a>
+					{% else %}
+						<a href="">
+							<img src="http://placehold.it/1000x400" alt="http://placehold.it/1000x400" style="height: 200px; width:100%; display:block;">
+						</a>
+					{% endif %}
+					<div class="card-body">
+						<h4 class="card-title"></h4>
+						<p class="card-text " style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+							{{post.content}}
+						</p>
+						<a href="#" class="btn btn-secondary">en savoir plus</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	{% set row = posts | length + 3 %}
+	<a href="{{ path ('show_projet',{'row': row }) }}" class="btn btn-secondary btn-ms">Show more ...</a>
+</div>
+{% endblock %}
