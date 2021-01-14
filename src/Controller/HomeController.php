@@ -18,20 +18,25 @@ class HomeController extends AbstractController
         if ($this->getUser()) {
             $projets = $repo->findByProjet(100);
             $developpements = $repo->findByDeveloppement(100);
-            $partenaires = $repo->findByPartenaire();
+            $actualites = $repo->findByActualite(100);
             return $this->render('home/adminpage.html.twig',[
                 'projets'           => $projets,
                 'developpements'    => $developpements,
-                'partenaires'       => $partenaires,
+                'actualites'       => $actualites,
             ]);
         } else {
+            $recentPost=$repo->findByCatRow(3,'actualite');
             $projets = $repo->findByProjet(3);
             $developpements = $repo->findByDeveloppement(3);
-            $partenaires = $repo->findByPartenaire();
+            $actualites = $repo->findByActualite(3);
             return $this->render('home/homepage.html.twig', [
                 'projets'           => $projets,
                 'developpements'    => $developpements,
-                'partenaires'       => $partenaires,
+                'actualites'        => $actualites,
+                'countProjet'       => count($repo->findByCategory('projet')),
+                'countDeveloppement'       => count($repo->findByCategory('developpement')),
+                'countActualite'       => count($repo->findByCategory('actualite')),
+                'recentPost'            => $recentPost[0]
             ]);
         }
     }

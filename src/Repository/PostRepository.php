@@ -70,13 +70,48 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByPartenaire(){
+    public function findByActualite($rows){
         return $this->createQueryBuilder('p')
             ->join('p.category', 'c')
             ->andWhere('c.name = :val')
-            ->setParameter('val', "partenaire")
+            ->setParameter('val', "actualite")
+            ->orderBy('p.createdAT', 'DESC')
+            ->setMaxResults($rows)
             ->getQuery()
             ->getResult()
         ;
     }
+
+    public function findByCategory($category){
+        return $this->createQueryBuilder('p')
+            ->join('p.category', 'c')
+            ->andWhere('c.name = :val')
+            ->setParameter('val', $category)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByCatRow($rows,$category){
+        return $this->createQueryBuilder('p')
+            ->join('p.category', 'c')
+            ->andWhere('c.name = :val')
+            ->setParameter('val', $category)
+            ->orderBy('p.createdAT', 'DESC')
+            ->setMaxResults($rows)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    // public function findByMaxDate(){
+    //     return $this->createQueryBuilder('p')
+    //         ->join('p.category', 'c')
+    //         ->select(expr()->maxmax('p.createdAT'))
+    //         ->andWhere('c.name = :val')
+    //         ->setParameter('val', 'actualite')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 }

@@ -6,29 +6,35 @@
 {% block body %}
 
 
-	<div class="container">
-		<section class="projet">
+	<div class="container " style="margin-top: 25vh;">
+		<section class="projet p-2" style="box-shadow: 3px 3px 5px 6px #ccc;"> 
 			<h1 class="mt-3 mb-4">Nos Projets</h1>
-			<div class="row">
-				<div class="col-3 h4">
+			<div class="row ">
+				<div class="col-2 h4">
 					<strong>Title</strong>
 				</div>
 				<div class="col-5 h4">
 					<strong>Content</strong>
 				</div>
-				<div class="col-4 h4">
+				<div class="col-2 h4">
+					<strong>Image</strong>
+				</div>
+				<div class="col-3 h4">
 					<strong>Action</strong>
 				</div>
 			</div>
 			{% for projet in projets %}
-				<div class="row my-1">
-					<div class="col-3">
+				<div class="row my-1 align-items-center">
+					<div class="col-2">
 						{{projet.title}}
 					</div>
 					<div class="col-5" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
 						{{projet.content}}
 					</div>
-					<div class="col-4">
+					<div class="col-2" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+						<img src="img/post/{{projet.imageName}}" alt="" class="w-50">
+					</div>
+					<div class="col-3">
 						<a class="btn btn-danger btn-ms" href="{{ path ('delete_post', {'id': projet.id}) }}"><i class="fas fa-trash-alt"></i></a>
 						<a class="btn btn-success btn-ms" href="{{ path ('edit_post', {'id': projet.id}) }}"><i class="fas fa-edit"></i></a>
 					</div>
@@ -37,28 +43,34 @@
 			<a class="btn btn-primary btn-ms" href="{{ path ('add_post') }}"><i class="fas fa-plus-square"></i></a>
 		</section>
 		<hr>
-        <section class="developpement">
+        <section class="developpement p-2" style="box-shadow: 3px 3px 5px 6px #ccc;">
 			<h1 class="mt-3 mb-4">Nos Développement</h1>
 			<div class="row">
-				<div class="col-3 h4">
+				<div class="col-2 h4">
 					<strong>Title</strong>
 				</div>
 				<div class="col-5 h4">
 					<strong>Content</strong>
 				</div>
-				<div class="col-4 h4">
+				<div class="col-2 h4">
+					<strong>Image</strong>
+				</div>
+				<div class="col-3 h4">
 					<strong>Action</strong>
 				</div>
 			</div>
 			{% for developpement in developpements %}
 				<div class="row my-1">
-					<div class="col-3">
+					<div class="col-2">
 						{{developpement.title}}
 					</div>
 					<div class="col-5" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
 						{{developpement.content}}
 					</div>
-					<div class="col-4">
+					<div class="col-2" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+						<img src="img/post/{{developpement.imageName}}" alt="" class="w-50">
+					</div>
+					<div class="col-3">
 						<a class="btn btn-danger btn-ms" href="{{ path ('delete_post', {'id': developpement.id}) }}"><i class="fas fa-trash-alt"></i></a>
 						<a class="btn btn-success btn-ms" href="{{ path ('edit_post', {'id': developpement.id}) }}"><i class="fas fa-edit"></i></a>
 					</div>
@@ -68,26 +80,40 @@
 			
 		</section>
 		<hr>
-        <section class="developpements">
-			<h1 class="mt-3 mb-4">Nos Partenaires</h1>
-			{% for partenaire in partenaires %}
+        <section class="actualite p-2" style="box-shadow: 3px 3px 5px 6px #ccc;">
+			<h1 class="mt-3 mb-4">Les Actualités</h1>
+			<div class="row">
+				<div class="col-2 h4">
+					<strong>Title</strong>
+				</div>
+				<div class="col-5 h4">
+					<strong>Content</strong>
+				</div>
+				<div class="col-2 h4">
+					<strong>Image</strong>
+				</div>
+				<div class="col-3 h4">
+					<strong>Action</strong>
+				</div>
+			</div>
+			{% for actualite in actualites %}
 				<div class="row my-1 align-items-center">
-					<div class="col-3">
-						{{partenaire.title}}
+					<div class="col-2">
+						{{actualite.title}}
+					</div>
+					<div class="col-5" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+						{{actualite.content}}
 					</div>
 					<div class="col-2" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-						{{partenaire.content}}
+						<img src="img/post/{{actualite.imageName}}" alt="" class="w-50">
 					</div>
 					<div class="col-3">
-						{# <img src="img/partenaire/{{partenaire.image}}" class="w-100 d-block m-auto" alt=""> #}
-					</div>
-					<div class="col-4">
-						<a class="btn btn-danger btn-ms" href="{{ path ('delete_post', {'id': partenaire.id}) }}"><i class="fas fa-trash-alt"></i></a>
-						<a class="btn btn-success btn-ms" href="{{ path ('edit_post', {'id': partenaire.id}) }}"><i class="fas fa-edit"></i></a>
+						<a class="btn btn-danger btn-ms" href="{{ path ('delete_post', {'id': actualite.id}) }}"><i class="fas fa-trash-alt"></i></a>
+						<a class="btn btn-success btn-ms" href="{{ path ('edit_post', {'id': actualite.id}) }}"><i class="fas fa-edit"></i></a>
 					</div>
 				</div>
 			{% endfor %}
-			
+			<a class="btn btn-primary btn-ms" href="{{ path ('add_post') }}"><i class="fas fa-plus-square"></i></a>
 		</section>
 		
 		

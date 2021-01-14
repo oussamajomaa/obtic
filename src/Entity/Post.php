@@ -48,7 +48,7 @@ class Post
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string|null
      */
@@ -68,7 +68,7 @@ class Post
     private $User;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $updatedAT;
 
@@ -181,9 +181,13 @@ class Post
 
     public function setUpdatedAT(\DateTimeInterface $updatedAT): self
     {
-        $this->updatedAT = $updatedAT;
+        if ($this->imageFile === null){
+            $this->updatedAT = new \DateTime('now');
+
+        }
 
         return $this;
     }
 
+  
 }
