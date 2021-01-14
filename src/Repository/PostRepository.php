@@ -92,7 +92,7 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByCatRow($rows,$category){
+    public function findByPostCategory($rows,$category){
         return $this->createQueryBuilder('p')
             ->join('p.category', 'c')
             ->andWhere('c.name = :val')
@@ -103,6 +103,18 @@ class PostRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    // public function findByCatRow($rows,$category){
+    //     return $this->createQueryBuilder('p')
+    //         ->join('p.category', 'c')
+    //         ->andWhere('c.name = :val')
+    //         ->setParameter('val', $category)
+    //         ->orderBy('p.createdAT', 'DESC')
+    //         ->setMaxResults($rows)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
     // public function findByMaxDate(){
     //     return $this->createQueryBuilder('p')

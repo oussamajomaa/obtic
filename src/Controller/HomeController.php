@@ -16,19 +16,19 @@ class HomeController extends AbstractController
     public function index(PostRepository $repo): Response
     {
         if ($this->getUser()) {
-            $projets = $repo->findByProjet(100);
-            $developpements = $repo->findByDeveloppement(100);
-            $actualites = $repo->findByActualite(100);
+            $projets = $repo->findByPostCategory(100, 'projet');
+            $developpements = $repo->findByPostCategory(100, 'developpement');
+            $actualites = $repo->findByPostCategory(100, 'actualite');
             return $this->render('home/adminpage.html.twig',[
                 'projets'           => $projets,
                 'developpements'    => $developpements,
                 'actualites'       => $actualites,
             ]);
         } else {
-            $recentPost=$repo->findByCatRow(3,'actualite');
-            $projets = $repo->findByProjet(3);
-            $developpements = $repo->findByDeveloppement(3);
-            $actualites = $repo->findByActualite(3);
+            $recentPost=$repo->findByPostCategory(3,'actualite');
+            $projets = $repo->findByPostCategory(3, 'projet');
+            $developpements = $repo->findByPostCategory(3, 'developpement');
+            $actualites = $repo->findByPostCategory(3, 'actualite');
             return $this->render('home/homepage.html.twig', [
                 'projets'           => $projets,
                 'developpements'    => $developpements,
